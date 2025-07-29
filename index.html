@@ -3,46 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reporte de Investigación Privada Fase 1 (Parte 2 y 3)</title>
+  <title>Reporte de Investigación Privada | Fase 1 (Parte 2 y 3)</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    @keyframes fadeInUp { from { opacity:0; transform: translateY(20px);} to { opacity:1; transform: translateY(0);} }
-    .animate-fadeInUp { animation: fadeInUp 0.8s ease-out both; }
-    @keyframes grow { 0% { transform: scale(0.9);} 100% { transform: scale(1);} }
-    .animate-grow { animation: grow 0.5s ease-in-out both; }
-    @keyframes bounce { 0%, 100% { transform: translateY(0);} 50% { transform: translateY(-10px);} }
-    .animate-bounce { animation: bounce 1s infinite; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .fadeIn { animation: fadeIn 1s ease-in-out; }
 
-    /* Bloqueo inicial */
     #lock-screen {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0,0,0,0.95);
+      background: rgba(0,0,0,0.97);
       display: flex;
       justify-content: center;
       align-items: center;
       z-index: 9999;
     }
+
+    .btn-primary {
+      background-color: #1F2937; /* navy blue-gray */
+    }
+
+    .btn-primary:hover {
+      background-color: #111827;
+    }
+
+    .btn-download {
+      background-color: #1E3A8A; /* navy blue */
+    }
+
+    .btn-download:hover {
+      background-color: #172554;
+    }
   </style>
 </head>
-<body class="bg-gray-50 font-sans antialiased">
+<body class="bg-gray-100 font-sans antialiased text-gray-800">
 
-  <!-- Pantalla de bloqueo -->
-  <div id="lock-screen">
-    <div class="bg-white rounded-xl shadow-lg p-8 text-center">
-      <h2 class="text-2xl font-bold mb-4">🔐 Acceso Restringido</h2>
-      <p class="mb-4 text-gray-600">Introduce la contraseña para continuar:</p>
-      <input id="password-input" type="password" placeholder="Contraseña" class="border p-2 rounded w-64 mb-4 text-center">
-      <br>
-      <button onclick="unlock()" class="bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-700">Entrar</button>
-      <p id="error-msg" class="text-red-500 mt-4 hidden">Contraseña incorrecta</p>
+  <div id="lock-screen" class="fadeIn">
+    <div class="bg-white rounded-xl shadow-xl p-8 text-center max-w-md mx-4">
+      <h2 class="text-2xl font-bold mb-4">🔒 Acceso Restringido</h2>
+      <p class="mb-4 text-gray-600">Ingrese su contraseña para acceder al reporte:</p>
+      <input id="password-input" type="password" placeholder="Contraseña" class="border border-gray-300 p-3 rounded w-full mb-4 text-center">
+      <button onclick="unlock()" class="btn-primary text-white px-6 py-3 rounded w-full transition duration-300">Ingresar</button>
+      <p id="error-msg" class="text-red-600 mt-4 hidden">Contraseña incorrecta. Inténtelo nuevamente.</p>
     </div>
   </div>
 
   <script>
     function unlock() {
-      const claveCorrecta = "EDIFASTPROYECTOS"; // Cambia la contraseña aquí
+      const claveCorrecta = "EDIFASTPROYECTOS";
       const claveIngresada = document.getElementById("password-input").value;
       if (claveIngresada === claveCorrecta) {
         document.getElementById("lock-screen").style.display = "none";
@@ -51,155 +60,142 @@
       }
     }
   </script>
-  <!-- Header -->
-  <header class="bg-white shadow-lg py-6 animate-fadeInUp">
-    <div class="container mx-auto px-8 flex justify-between items-center">
-      <h1 class="text-4xl font-extrabold text-gray-800">Reporte de Investigación Privada<br><span class="text-indigo-600">Fase 1 (Parte 2 y 3)</span></h1>
-      <nav class="space-x-6 text-gray-600">
-        <a href="#resumen" class="hover:text-indigo-600 transition-colors">Resumen</a>
-        <a href="#objetivos" class="hover:text-indigo-600 transition-colors">Objetivos</a>
-        <a href="#metodologia" class="hover:text-indigo-600 transition-colors">Metodología</a>
-        <a href="#dorks-osint" class="hover:text-indigo-600 transition-colors">Dorks OSINT</a>
-        <a href="#hallazgos-detallados" class="hover:text-indigo-600 transition-colors">Hallazgos Detallados</a>
-        <a href="#hallazgos" class="hover:text-indigo-600 transition-colors">Hallazgos Principales</a>
-        <a href="#glosario" class="hover:text-indigo-600 transition-colors">Glosario</a>
-        <a href="#recomendaciones" class="hover:text-indigo-600 transition-colors">Recomendaciones</a>
+
+  <header class="bg-white shadow py-6 fadeIn">
+    <div class="container mx-auto px-4 md:px-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+      <h1 class="text-2xl md:text-3xl font-bold text-gray-800 text-center md:text-left">Reporte de Investigación Privada</h1>
+      <nav class="flex flex-wrap justify-center gap-4 text-gray-600 font-medium text-sm md:text-base">
+        <a href="#resumen" class="hover:text-gray-900">Resumen</a>
+        <a href="#objetivos" class="hover:text-gray-900">Objetivos</a>
+        <a href="#metodologia" class="hover:text-gray-900">Metodología</a>
+        <a href="#dorks-osint" class="hover:text-gray-900">Dorks OSINT</a>
+        <a href="#hallazgos-detallados" class="hover:text-gray-900">Hallazgos Detallados</a>
+        <a href="#hallazgos" class="hover:text-gray-900">Hallazgos Principales</a>
+        <a href="#alias" class="hover:text-gray-900">Alias Detectados</a>
+        <a href="#glosario" class="hover:text-gray-900">Glosario</a>
+        <a href="#recomendaciones" class="hover:text-gray-900">Recomendaciones</a>
       </nav>
     </div>
   </header>
 
-  <main class="container mx-auto px-8 py-12 space-y-16">
-    <!-- Resumen Ejecutivo -->
-    <section id="resumen" class="bg-white p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-shadow duration-500 animate-fadeInUp">
-      <h2 class="text-3xl font-bold text-gray-800 mb-4">Resumen Ejecutivo</h2>
-      <p class="text-gray-700 leading-relaxed mb-4">
-        Esta fase combina <span class="font-semibold text-indigo-600">OSINT</span>, <span class="font-semibold text-green-600">SOCMINT</span> y <span class="font-semibold text-yellow-600">fuzzing</span> para mapear la infraestructura digital, la presencia en redes sociales y posibles alias relacionados con <strong>Mia Rentals</strong> y <strong>ATG Rentals</strong>. Además, se realizó un análisis exhaustivo de <strong>dorks OSINT</strong> (2,490 en total) para detectar información pública. Solo algunos hallazgos resultaron relevantes (documentados en la siguiente sección).
-      </p>
+  <section class="flex justify-center my-8 px-4 fadeIn">
+    <a href="Reporte_Privada_Fase1_Parte2y3.pdf" class="btn-download text-white px-6 md:px-8 py-3 rounded-full font-semibold transition transform hover:scale-105 shadow-lg text-center w-full md:w-auto">⬇ Descargar Reporte Completo (PDF)</a>
+  </section>
+
+  <main class="container mx-auto px-4 md:px-8 py-8 md:py-12 space-y-12 md:space-y-16 fadeIn text-sm md:text-base">
+    <section id="resumen" class="bg-white p-6 md:p-8 rounded-lg shadow-lg">
+      <h2 class="text-xl md:text-2xl font-semibold mb-4">Resumen Ejecutivo</h2>
+      <p class="text-gray-700 mb-4">Este reporte integra técnicas OSINT, SOCMINT y fuzzing para mapear y analizar la infraestructura digital y presencia pública relacionada con Mia Rentals y ATG Rentals. Se destacaron hallazgos relevantes obtenidos mediante búsquedas avanzadas y un análisis exhaustivo de la información disponible.</p>
+      
     </section>
 
-    <!-- Objetivos -->
-    <section id="objetivos" class="bg-white p-10 rounded-3xl shadow-xl transform hover:scale-105 transition-transform duration-500 animate-grow">
-      <h2 class="text-3xl font-bold text-gray-800 mb-4">Objetivos de la Investigación</h2>
-      <ol class="list-decimal list-inside space-y-4 text-gray-700">
-        <li>Mapear y documentar la infraestructura tecnológica de Mia Rentals y ATG Rentals.</li>
-        <li>Identificar y corroborar activos digitales: dominios, subdominios, correos y CMS.</li>
-        <li>Analizar la presencia y actividad en redes sociales para perfilar responsables.</li>
-        <li>Ejecutar búsquedas OSINT a gran escala con dorks para identificar exposición pública.</li>
-      </ol>
-    </section>
-
-    <!-- Metodología -->
-    <section id="metodologia" class="bg-white p-10 rounded-3xl shadow-xl space-y-8 animate-fadeInUp">
-      <h2 class="text-3xl font-bold text-gray-800 mb-4">Metodología</h2>
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div class="bg-indigo-50 p-6 rounded-2xl shadow-lg">
-          <h3 class="text-xl font-bold text-indigo-600 mb-2">OSINT</h3>
-          <ul class="list-disc list-inside text-gray-700">
-            <li>Análisis DNS y dominios.</li>
-            <li>Wayback Machine e infraestructura web.</li>
-            <li>Dorks OSINT (2490 dorks) en Google: site:, intitle:, intext:, filetype:.</li>
-          </ul>
-        </div>
-        <div class="bg-green-50 p-6 rounded-2xl shadow-lg">
-          <h3 class="text-xl font-bold text-green-600 mb-2">SOCMINT</h3>
-          <ul class="list-disc list-inside text-gray-700">
-            <li>Análisis de Facebook, Instagram y Threads.</li>
-            <li>Inspección de campañas publicitarias (Facebook Ads).</li>
-          </ul>
-        </div>
-        <div class="bg-yellow-50 p-6 rounded-2xl shadow-lg">
-          <h3 class="text-xl font-bold text-yellow-600 mb-2">Fuzzing</h3>
-          <ul class="list-disc list-inside text-gray-700">
-            <li>Exploración de endpoints /xmlrpc.php, /wp-json, /robots.txt.</li>
-            <li>Intentos con Shodan y Censys (algunos bloqueados).</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Dorks OSINT -->
-    <section id="dorks-osint" class="bg-white p-10 rounded-3xl shadow-xl space-y-8 animate-fadeInUp">
-      <h2 class="text-3xl font-bold text-gray-800 mb-4">Dorks OSINT – Resultados relevantes</h2>
-      <p class="text-gray-700 mb-4">Se ejecutaron <strong>2,490 dorks</strong> divididos en categorías (Empresa, Persona, RFC, Correo, Teléfono). Solo se obtuvieron resultados útiles en la categoría <strong>Empresa</strong>, específicamente relacionados con <strong>Mia Rentals</strong>:</p>
+    <section id="objetivos" class="bg-white p-6 md:p-8 rounded-lg shadow-lg">
+      <h2 class="text-xl md:text-2xl font-semibold mb-4">Objetivos de la Investigación</h2>
       <ul class="list-disc list-inside text-gray-700 space-y-2">
-        <li><strong>site:airbnb.com "Mia Rentals"</strong> – Múltiples listados y perfiles relacionados con Casa Mia Rentals en Macedonia, Croacia, Bulgaria e Israel.</li>
-        <li><strong>site:booking.com "Mia Rentals"</strong> – Listados activos, incluyendo "Miami Beach Apartments by MiaRentals" y propiedades en Sunny Isles Beach, Florida.</li>
-        <li>Los resultados confirman operaciones internacionales y presencia pública consistente en ambas plataformas.</li>
+        <li>Identificar y documentar activos digitales relevantes (dominios, subdominios, correos electrónicos, etc.).</li>
+        <li>Evaluar la presencia digital y la actividad en redes sociales.</li>
+        <li>Detectar alias digitales y su relación con las entidades investigadas.</li>
+        <li>Determinar posibles vulnerabilidades mediante técnicas de fuzzing.</li>
+      </ul>
+      
+    </section>
+
+    <section id="metodologia" class="bg-white p-6 md:p-8 rounded-lg shadow-lg">
+      <h2 class="text-xl md:text-2xl font-semibold mb-4">Metodología Utilizada</h2>
+      <p class="text-gray-700 mb-4">Se aplicaron técnicas avanzadas de OSINT (Open Source Intelligence) para identificar información pública relevante. Se analizó la presencia en redes sociales mediante SOCMINT (Social Media Intelligence) y se realizaron pruebas de fuzzing en dominios y subdominios asociados.</p>
+      <ul class="list-disc list-inside text-gray-700 space-y-2">
+        <li>Revisión de DNS, registros MX y servidores asociados.</li>
+        <li>Uso de Wayback Machine y otras herramientas para obtener información histórica.</li>
+        <li>Aplicación de dorks OSINT (2,490 consultas en total) para identificar datos expuestos.</li>
+      </ul>
+      
+    </section>
+
+    <section id="dorks-osint" class="bg-white p-6 md:p-8 rounded-lg shadow-lg">
+      <h2 class="text-xl md:text-2xl font-semibold mb-4">Dorks OSINT – Resultados Relevantes</h2>
+      <p class="text-gray-700 mb-4">De las 2,490 búsquedas realizadas, sólo se obtuvieron resultados útiles en la categoría Empresa, relacionados con Mia Rentals:</p>
+      <ul class="list-disc list-inside text-gray-700 space-y-2">
+        <li><strong>site:airbnb.com "Mia Rentals"</strong> – múltiples listados.</li>
+        <li><strong>site:booking.com "Mia Rentals"</strong> – listados activos.</li>
       </ul>
       <p class="text-gray-700"><em>El resto de las categorías (Persona, RFC, Correo, Teléfono) no arrojaron información pública relevante.</em></p>
-    </section>
-
-    <!-- Hallazgos Detallados -->
-    <section id="hallazgos-detallados" class="bg-white p-10 rounded-3xl shadow-xl space-y-6 animate-fadeInUp">
-      <h2 class="text-3xl font-bold mb-4">Hallazgos Detallados</h2>
       
-      <!-- Bloque Dorks OSINT -->
-      <details class="mb-4 bg-gray-50 p-4 rounded-lg">
-        <summary class="cursor-pointer font-semibold">1. Hallazgos de Dorks OSINT (Mia Rentals)</summary>
-        <ul class="mt-2 list-disc list-inside text-gray-700 space-y-1">
-          <li><strong>Airbnb:</strong> "Mia Rentals" aparece en múltiples listados de Airbnb en Macedonia, Croacia, Bulgaria e Israel.</li>
-          <li><strong>Booking.com:</strong> Listados activos, incluyendo "Miami Beach Apartments by MiaRentals" y propiedades en Sunny Isles Beach, Florida.</li>
-          <li>Confirmada fuerte presencia internacional en plataformas de alquiler vacacional.</li>
-        </ul>
-        <p class="mt-2 text-sm text-gray-600"><em>Nota:</em> las búsquedas de Persona, RFC, Correos y Teléfonos no generaron información pública relevante.</p>
-      </details>
-
-      <!-- Aquí puedes añadir más detalles técnicos o de otras fases si lo deseas -->
     </section>
 
-    <!-- Hallazgos Principales -->
-    <section id="hallazgos" class="bg-white p-10 rounded-3xl shadow-xl space-y-10">
-      <h2 class="text-3xl font-bold text-gray-800 mb-4 animate-fadeInUp">Hallazgos Principales</h2>
-      <div class="grid grid-cols-1 xl:grid-cols-2 gap-10">
-        <div class="space-y-4 bg-gray-50 p-6 rounded-2xl">
-          <h3 class="text-2xl font-semibold text-gray-800">Infraestructura</h3>
-          <ul class="list-disc list-inside text-gray-700 space-y-1">
-            <li><strong>Mia Rentals</strong>: Hospedaje en GoDaddy, WordPress 6.0.1 con plugins Elementor y Jetpack.</li>
-            <li><strong>ATG Rentals</strong>: DNS administrado en Outlook (Microsoft 365).</li>
-          </ul>
-        </div>
-        <div class="space-y-4 bg-gray-50 p-6 rounded-2xl">
-          <h3 class="text-2xl font-semibold text-gray-800">SOCMINT</h3>
-          <ul class="list-disc list-inside text-gray-700 space-y-1">
-            <li>Páginas de Facebook oficiales: Miarentals.mx y ATG Rentals.</li>
-            <li>Campañas de Facebook Ads activas en 2022.</li>
-          </ul>
-        </div>
+    <section id="hallazgos-detallados" class="bg-white p-6 md:p-8 rounded-lg shadow-lg">
+      <h2 class="text-xl md:text-2xl font-semibold mb-4">Hallazgos Detallados</h2>
+      <p class="text-gray-700 mb-4">Los hallazgos demuestran la fuerte presencia internacional de Mia Rentals en plataformas de alquiler vacacional, mientras que ATG Rentals presenta actividad digital más limitada. Se documentaron campañas activas en Facebook Ads y alias digitales asociados.</p>
+      <ul class="list-disc list-inside text-gray-700 space-y-2">
+        <li>Facebook: <a href="https://www.facebook.com/Miarentals.mx" target="_blank" class="text-blue-800 underline">Miarentals.mx</a> y <a href="https://www.facebook.com/atgrentals" target="_blank" class="text-blue-800 underline">ATG Rentals</a></li>
+        <li>Facebook Ads ID: 402047449186</li>
+        <li>Infraestructura web basada en WordPress 6.0.1, plugins Elementor y Jetpack.</li>
+      </ul>
+      
+    </section>
+
+    <section id="hallazgos" class="bg-white p-6 md:p-8 rounded-lg shadow-lg">
+      <h2 class="text-xl md:text-2xl font-semibold mb-4">Hallazgos Principales</h2>
+      <ul class="list-disc list-inside text-gray-700 space-y-2">
+        <li>Presencia sólida de Mia Rentals en Airbnb y Booking.com.</li>
+        <li>Infraestructura web basada en WordPress con plugins identificados.</li>
+        <li>Campañas publicitarias activas con Facebook Ads ID 402047449186.</li>
+      </ul>
+     
+    </section>
+
+    <section id="alias" class="bg-white p-6 md:p-8 rounded-lg shadow-lg">
+      <h2 class="text-xl md:text-2xl font-semibold mb-4">Alias Digitales Detectados</h2>
+      <p class="text-gray-700 mb-4">Se detectaron alias relacionados en diferentes plataformas públicas:</p>
+      <h3 class="font-semibold mb-2">AlanHaiquel (14 perfiles):</h3>
+      <ul class="list-disc list-inside text-gray-700 mb-4 space-y-1">
+        <li><a href="https://freelance.habr.com/freelancers/AlanHaiquel" target="_blank" class="text-blue-800 underline">freelance.habr.com/freelancers/AlanHaiquel</a></li>
+        <li><a href="https://gitlab.gnome.org/AlanHaiquel" target="_blank" class="text-blue-800 underline">gitlab.gnome.org/AlanHaiquel</a></li>
+        <li>... (total 14 URLs)</li>
+      </ul>
+      <h3 class="font-semibold mb-2">DanicePerez (19 perfiles):</h3>
+      <ul class="list-disc list-inside text-gray-700 space-y-1">
+        <li><a href="https://aniworld.to/user/profil/DanicePerez" target="_blank" class="text-blue-800 underline">aniworld.to/user/profil/DanicePerez</a></li>
+        <li><a href="https://disqus.com/DanicePerez" target="_blank" class="text-blue-800 underline">disqus.com/DanicePerez</a></li>
+        <li>... (total 19 URLs)</li>
+      </ul>
+      
+    </section>
+
+     <section id="diagrama" class="bg-white p-6 md:p-8 rounded-lg shadow-lg">
+      <h2 class="text-xl md:text-2xl font-semibold mb-4">Diagrama de Relaciones</h2>
+      <div class="flex justify-center">
+        <img src="Diagrama_OSINT_Mia_ATG_v2.png" alt="Diagrama relaciones" class="w-full max-w-3xl rounded-lg shadow-lg border border-gray-200">
       </div>
     </section>
 
-    <!-- Glosario -->
-    <section id="glosario" class="bg-white p-10 rounded-3xl shadow-xl space-y-6 animate-fadeInUp">
-      <h2 class="text-3xl font-bold text-gray-800 mb-4">Glosario de términos técnicos</h2>
+    <section id="glosario" class="bg-white p-6 md:p-8 rounded-lg shadow-lg">
+      <h2 class="text-xl md:text-2xl font-semibold mb-4">Glosario de Términos Técnicos</h2>
       <ul class="list-disc list-inside text-gray-700 space-y-2">
-        <li><strong>OSINT</strong>: Inteligencia de fuentes abiertas. Obtención de información pública disponible en internet.</li>
-        <li><strong>SOCMINT</strong>: Inteligencia de redes sociales. Investigación en Facebook, Instagram, Threads, etc.</li>
-        <li><strong>Dork</strong>: Consulta avanzada en buscadores utilizando operadores especiales.</li>
-        <li><strong>site:</strong>: Operador que limita la búsqueda a un dominio específico.</li>
-        <li><strong>intitle:</strong>: Operador que busca el término en el título de la página.</li>
-        <li><strong>intext:</strong>: Operador que busca el término en el contenido de la página.</li>
-        <li><strong>filetype:</strong>: Operador que filtra por tipo de archivo (PDF, DOC, XLS).</li>
-        <li><strong>Fuzzing</strong>: Técnica para descubrir endpoints ocultos probando múltiples rutas.</li>
-        <li><strong>Endpoints</strong>: Direcciones de un servidor web que procesan peticiones.</li>
-        <li><strong>Shodan / Censys</strong>: Motores de búsqueda de dispositivos conectados y servicios expuestos.</li>
+        <li><strong>OSINT:</strong> Inteligencia de fuentes abiertas.</li>
+        <li><strong>SOCMINT:</strong> Inteligencia proveniente de redes sociales.</li>
+        <li><strong>Dork:</strong> consulta avanzada en buscadores con operadores especiales.</li>
+        <li><strong>Fuzzing:</strong> técnica de prueba de endpoints ocultos.</li>
       </ul>
+      
     </section>
 
-    <!-- Recomendaciones -->
-    <section id="recomendaciones" class="bg-white p-10 rounded-3xl shadow-xl animate-fadeInUp">
-      <h2 class="text-3xl font-bold text-gray-800 mb-4">Recomendaciones para Fases 2 y 3</h2>
-      <ol class="list-decimal list-inside space-y-4 text-gray-700">
-        <li>Realizar infiltración controlada en empresa y lugares clave.</li>
-        <li>Implementar seguimiento físico en puntos detectados en OSINT.</li>
-        <li>Entrevistar clientes y exempleados vinculados a Mia Rentals.</li>
+    <section id="recomendaciones" class="bg-white p-6 md:p-8 rounded-lg shadow-lg">
+      <h2 class="text-xl md:text-2xl font-semibold mb-4">Recomendaciones</h2>
+      <ol class="list-decimal list-inside text-gray-700 space-y-2">
+        <li>Avanzar hacia la fase de infiltración controlada en sitios clave.</li>
+        <li>Realizar seguimiento físico documentado de ubicaciones detectadas.</li>
+        <li>Entrevistar a clientes, exempleados y testigos vinculados de forma anónima.</li>
       </ol>
-      <p class="mt-6 text-sm text-gray-500">*Estas recomendaciones deben planificarse con protocolos de seguridad y permisos correspondientes.</p>
+      <div class="text-center mt-6 flex flex-col md:flex-row gap-4">
+        <a href="#resumen" class="btn-primary text-white px-6 py-3 rounded shadow-lg hover:scale-105 transition">Volver al Resumen</a>
+        <a href="Reporte_Privada_Fase1_Parte2y3.pdf" class="btn-download text-white px-6 py-3 rounded shadow-lg hover:scale-105 transition">⬇ Descargar PDF</a>
+      </div>
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-white mt-16 py-6 shadow-inner text-center text-gray-500 text-sm">
-    Reporte generado el <strong>29 de julio de 2025</strong> | Derechos reservados ©
+  <footer class="bg-white mt-12 py-6 shadow-inner text-center text-gray-500 text-xs md:text-sm fadeIn">
+    © 2025 | Reporte generado el <strong>29 de julio de 2025</strong> | Todos los derechos reservados
   </footer>
+
 </body>
 </html>
