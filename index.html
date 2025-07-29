@@ -12,9 +12,45 @@
     .animate-grow { animation: grow 0.5s ease-in-out both; }
     @keyframes bounce { 0%, 100% { transform: translateY(0);} 50% { transform: translateY(-10px);} }
     .animate-bounce { animation: bounce 1s infinite; }
+
+    /* Bloqueo inicial */
+    #lock-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.95);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
   </style>
 </head>
 <body class="bg-gray-50 font-sans antialiased">
+
+  <!-- Pantalla de bloqueo -->
+  <div id="lock-screen">
+    <div class="bg-white rounded-xl shadow-lg p-8 text-center">
+      <h2 class="text-2xl font-bold mb-4">🔐 Acceso Restringido</h2>
+      <p class="mb-4 text-gray-600">Introduce la contraseña para continuar:</p>
+      <input id="password-input" type="password" placeholder="Contraseña" class="border p-2 rounded w-64 mb-4 text-center">
+      <br>
+      <button onclick="unlock()" class="bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-700">Entrar</button>
+      <p id="error-msg" class="text-red-500 mt-4 hidden">Contraseña incorrecta</p>
+    </div>
+  </div>
+
+  <script>
+    function unlock() {
+      const claveCorrecta = "EDIFASTPROYECTOS"; // Cambia la contraseña aquí
+      const claveIngresada = document.getElementById("password-input").value;
+      if (claveIngresada === claveCorrecta) {
+        document.getElementById("lock-screen").style.display = "none";
+      } else {
+        document.getElementById("error-msg").classList.remove("hidden");
+      }
+    }
+  </script>
   <!-- Header -->
   <header class="bg-white shadow-lg py-6 animate-fadeInUp">
     <div class="container mx-auto px-8 flex justify-between items-center">
